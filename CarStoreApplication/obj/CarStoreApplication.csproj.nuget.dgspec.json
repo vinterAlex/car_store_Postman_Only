@@ -4,6 +4,17 @@
     "Y:\\CarStore\\CarStoreApplication\\CarStoreApplication.csproj": {}
   },
   "projects": {
+    "Y:\\CarStore\\CarsStore\\CarsStore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "Y:\\CarStore\\CarsStore\\CarsStore.csproj",
+        "projectName": "CarsStore",
+        "projectPath": "Y:\\CarStore\\CarsStore\\CarsStore.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "Y:\\CarStore\\CarStoreApplication\\CarStoreApplication.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -29,7 +40,11 @@
         },
         "frameworks": {
           "netcoreapp2.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "Y:\\CarStore\\CarsStore\\CarsStore.csproj": {
+                "projectPath": "Y:\\CarStore\\CarsStore\\CarsStore.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
