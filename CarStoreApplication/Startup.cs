@@ -35,6 +35,8 @@ namespace CarStoreApplication
                 app.UseDeveloperExceptionPage();
             }
 
+            
+
             app.UseStatusCodePages(); //simple http message 
             app.UseMvc();
         }

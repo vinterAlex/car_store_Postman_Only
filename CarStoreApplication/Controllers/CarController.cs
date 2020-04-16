@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
-    [Route("api/cars")]
+    [Route("api/getcars")]
     public class CarController : ControllerBase
     {
         [HttpGet]
