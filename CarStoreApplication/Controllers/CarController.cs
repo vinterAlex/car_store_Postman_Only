@@ -14,9 +14,9 @@ namespace CarStoreApplication.Controllers
     public class CarController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult RetrieveCar()
         {
-            return Ok();
+            return Ok("RetrieveCar method [OK]");
         }
 
         

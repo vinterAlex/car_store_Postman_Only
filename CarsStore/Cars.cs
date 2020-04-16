@@ -13,11 +13,6 @@ namespace CarsStore
         {
             CarID = carId;
         }
-
-        public Cars(SqlDataReader reader, SqlConnection sqlConnection)
-        {
-
-        }
         
         public int CarID { get; set; }
         public int DriveTypeID { get; set; }
