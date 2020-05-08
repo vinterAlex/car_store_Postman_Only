@@ -1,3 +1,8 @@
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csprojAssemblyReference.cache
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cache
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cs
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.AssemblyInfoInputs.cache
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.AssemblyInfo.cs
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.deps.json
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.runtimeconfig.json
@@ -6,11 +11,6 @@ Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.dll
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.pdb
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarsStore.dll
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarsStore.pdb
-Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csprojAssemblyReference.cache
-Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cache
-Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cs
-Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.AssemblyInfoInputs.cache
-Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.AssemblyInfo.cs
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorTargetAssemblyInfo.cache
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csproj.CopyComplete
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.dll

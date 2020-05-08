@@ -9,10 +9,7 @@ namespace CarsStore
 {
     public class Cars
     {
-       // public Cars(int carId)
-       // {
-       //     VehicleID= carId;
-       // }
+
         
         public int VehicleID { get; set; }
         public int DriveTypeID { get; set; }
@@ -23,7 +20,8 @@ namespace CarsStore
         public DateTime ModifyDate { get; set; }
         public int VehiclePrice { get; set; }
 
-        
 
     }
+
+
 }
