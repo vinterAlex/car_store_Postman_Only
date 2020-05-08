@@ -35,7 +35,11 @@ namespace CarStoreApplication
                 app.UseDeveloperExceptionPage();
             }
 
-            
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Welcome to API ...");
+            });
 
             app.UseStatusCodePages(); //simple http message 
             app.UseMvc();

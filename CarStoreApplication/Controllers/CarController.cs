@@ -41,12 +41,12 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<Cars> carsList = new List<Cars>();
+                    List<Vehicles> carsList = new List<Vehicles>();
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        Cars car = new Cars();
+                        Vehicles car = new Vehicles();
 
                         //convert for all INT/Date's etc...
                         car.VehicleID = Convert.ToInt32(row["VehicleID"]);
@@ -58,11 +58,9 @@ namespace CarStoreApplication.Controllers
                         car.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
                         car.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
 
-
-
                         carsList.Add(car);
                     }
-
+                    
                     return Ok(carsList);
 
                 }
@@ -114,13 +112,14 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<CarsDetailed> carsList = new List<CarsDetailed>();
+                    List<VehiclesDetailed> carsList = new List<VehiclesDetailed>();
 
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        CarsDetailed cars = new CarsDetailed();
+                        VehiclesDetailed cars = new VehiclesDetailed();
+                        
 
                         //convert for all INT/Date's etc...
                         cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
