@@ -104,7 +104,6 @@ namespace CarStoreApplication.Controllers
                 "where v.VehicleID ="+vehicleIDParam;
 
 
-
                 conn.Open();
 
                 DataTable dt = new DataTable();
@@ -124,18 +123,16 @@ namespace CarStoreApplication.Controllers
                         CarsDetailed cars = new CarsDetailed();
 
                         //convert for all INT/Date's etc...
-                        cars.VehicleID2 = Convert.ToInt32(row["VehicleID"]);
-                        cars.DriveTypeID2 = Convert.ToString(row["DriveTypeID"]);
-                        cars.EngineDescriptionID2 = Convert.ToString(row["EngineDescription"]);
-                        cars.MakeID2 = Convert.ToString(row["Make"]);
-                        cars.ModelID2 = Convert.ToString(row["Model"]);
-                        cars.ConstructionYearID2 = Convert.ToInt32(row["ConstructionYear"]);
-                        cars.ModifyDate2 = Convert.ToDateTime(row["ModifyDate"]);
-                        cars.VehiclePrice2 = Convert.ToInt32(row["VehiclePrice"]);
+                        cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
+                        cars.DriveTypeID = Convert.ToString(row["DriveTypeID"]);
+                        cars.EngineDescriptionID = Convert.ToString(row["EngineDescription"]);
+                        cars.MakeID = Convert.ToString(row["Make"]);
+                        cars.ModelID = Convert.ToString(row["Model"]);
+                        cars.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
+                        cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
+                        cars.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
                         
-
                         cmd.Parameters.AddWithValue("@VehicleID", vehicleIDParam);
-
 
                         carsList.Add(cars);
                     }
@@ -149,14 +146,7 @@ namespace CarStoreApplication.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
             }
 
-
-
-
-            //return Ok("RetrieveCar method [OK]");
         }
-
-
-
 
     }
 }
