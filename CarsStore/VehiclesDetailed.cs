@@ -16,6 +16,6 @@ namespace CarsStore
         public string ModelID { get; set; }
         public int ConstructionYearID { get; set; }
         public DateTime ModifyDate { get; set; }
-        public int VehiclePrice { get; set; }
+        public string VehiclePrice { get; set; }
     }
 }
