@@ -49,7 +49,7 @@ namespace CarStoreApplication.Controllers
         /// <param name="dbVehicleItem"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CreateVehicleEntry(VehicleForDb dbVehicleItem)
+        public IActionResult CreateVehicle(VehicleForDb dbVehicleItem)
         {
             _context.VehiclesDbSet.Add(
                 new VehicleForDb()
@@ -67,6 +67,39 @@ namespace CarStoreApplication.Controllers
             _context.SaveChanges();
 
             return Ok("Record created!");
+        }
+
+        /// <summary>
+        /// change record
+        /// </summary>
+        /// <param name="vehicleItem"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public IActionResult UpdateVehicle(VehicleForDb vehicleItem)
+        {
+            var existingEntry = _context.VehiclesDbSet.Where(v => v.VehicleID == vehicleItem.VehicleID).FirstOrDefault<VehicleForDb>();
+
+
+            if(existingEntry != null)
+            {
+                existingEntry.DriveTypeID = vehicleItem.DriveTypeID;
+                existingEntry.EngineDescriptionID = vehicleItem.EngineDescriptionID;
+                existingEntry.MakeID = vehicleItem.MakeID;
+                existingEntry.ModelID = vehicleItem.ModelID;
+                existingEntry.ConstructionYearID = vehicleItem.ConstructionYearID;
+                existingEntry.ModifyDate = vehicleItem.ModifyDate;
+                existingEntry.VehiclePrice = vehicleItem.VehiclePrice;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                return NotFound("No entry found based on this criteria.");
+            }
+
+            return Ok("Entry "+existingEntry+" Updated");
+
+
         }
         
 
