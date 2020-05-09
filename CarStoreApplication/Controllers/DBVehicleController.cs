@@ -43,12 +43,32 @@ namespace CarStoreApplication.Controllers
             return Ok(_context.VehiclesDbSet.Where(c => c.VehicleID == vehicleID).ToList());
         }
 
-        //[HttpGet]
-        //public IEnumerable<Vehicles> GetCar()
-        //{
-        //    return _context.VehiclesDbSet.ToList();
-        //    
-        //}
+        /// <summary>
+        /// Creating record using EF with DBContext
+        /// </summary>
+        /// <param name="dbVehicleItem"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult CreateVehicleEntry(VehicleForDb dbVehicleItem)
+        {
+            _context.VehiclesDbSet.Add(
+                new VehicleForDb()
+                {
+                    DriveTypeID = dbVehicleItem.DriveTypeID,
+                    EngineDescriptionID = dbVehicleItem.EngineDescriptionID,
+                    MakeID = dbVehicleItem.MakeID,
+                    ModelID = dbVehicleItem.ModelID,
+                    ConstructionYearID = dbVehicleItem.ConstructionYearID,
+                    ModifyDate = dbVehicleItem.ModifyDate,
+                    VehiclePrice = dbVehicleItem.VehiclePrice
+
+                }) ;
+
+            _context.SaveChanges();
+
+            return Ok("Record created!");
+        }
+        
 
 
     }
