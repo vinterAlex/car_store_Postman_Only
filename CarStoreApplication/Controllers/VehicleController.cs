@@ -13,15 +13,18 @@ using System.Threading.Tasks;
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
-    [Route("api/getcars")]
+    [Route("api/[controller]")]
     public class VehicleController : ControllerBase
     {
 
 
 
-
+        /// <summary>
+        /// Get the list of all vehicles
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult RetrieveCars()
+        public IActionResult RetrieveVehicle()
         {
             try
             {
@@ -74,9 +77,14 @@ namespace CarStoreApplication.Controllers
 
 
 
+        /// <summary>
+        /// Find vehicles based on the ID
+        /// </summary>
+        /// <param name="vehicleIDParam"></param>
+        /// <returns></returns>
         // in API too look after the vehicle ID with detailed informations
         [HttpGet("{vehicleIDParam}")]
-        public IActionResult RetrieveCar(int vehicleIDParam)
+        public IActionResult RetrieveVehicle(int vehicleIDParam)
         {
 
             try
