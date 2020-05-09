@@ -23,9 +23,15 @@ namespace CarStoreApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCar()
+        public IActionResult GetVehicles()
         {
             return Ok(_context.VehiclesDbSet.ToList());
+        }
+
+        [HttpGet("{vehicleID}")]
+        public IActionResult GetVehicleByID(int vehicleID)
+        {
+            return Ok(_context.VehiclesDbSet.Where(c => c.VehicleID == vehicleID).ToList());
         }
 
         //[HttpGet]

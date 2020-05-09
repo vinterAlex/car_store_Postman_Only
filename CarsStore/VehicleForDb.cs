@@ -12,8 +12,6 @@ namespace CarsStore
     public class VehicleForDb
     {
 
-        
-
         [Key]
         public int VehicleID { get; set; }
         public int DriveTypeID { get; set; }
