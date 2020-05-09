@@ -2,3 +2,4 @@ Y:\CarStore\CarsStore\bin\Debug\CarsStore.dll
 Y:\CarStore\CarsStore\bin\Debug\CarsStore.pdb
 Y:\CarStore\CarsStore\obj\Debug\CarsStore.dll
 Y:\CarStore\CarsStore\obj\Debug\CarsStore.pdb
+Y:\CarStore\CarsStore\obj\Debug\CarsStore.csprojAssemblyReference.cache
