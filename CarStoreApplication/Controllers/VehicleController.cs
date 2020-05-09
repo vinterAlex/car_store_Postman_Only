@@ -52,10 +52,10 @@ namespace CarStoreApplication.Controllers
                         //convert for all INT/Date's etc...
                         car.VehicleID = Convert.ToInt32(row["VehicleID"]);
                         car.DriveTypeID = Convert.ToInt32(row["DriveTypeID"]);
-                        car.EngineDescriptionID = Convert.ToInt32(row["EngineDescription"]);
-                        car.MakeID = Convert.ToInt32(row["Make"]);
-                        car.ModelID = Convert.ToInt32(row["Model"]);
-                        car.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
+                        car.EngineDescriptionID = Convert.ToInt32(row["EngineDescriptionID"]);
+                        car.MakeID = Convert.ToInt32(row["MakeID"]);
+                        car.ModelID = Convert.ToInt32(row["ModelID"]);
+                        car.ConstructionYearID = Convert.ToInt32(row["ConstructionYearID"]);
                         car.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
                         car.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
 
@@ -98,13 +98,13 @@ namespace CarStoreApplication.Controllers
                 "	inner join DriveTypeDescription dt " +
                 "		on dt.DriveTypeID = v.DriveTypeID " +
                 "	inner join EngineDescriptionType eg " +
-                "		on eg.EngineDescriptionTypeID = v.EngineDescription " +
+                "		on eg.EngineDescriptionTypeID = v.EngineDescriptionID " +
                 "	inner join MakeType mk " +
-                "		on mk.MakeTypeID = v.Make " +
+                "		on mk.MakeTypeID = v.MakeID " +
                 "	inner join ModelType mt " +
-                "		on mt.ModelTypeID = v.Model " +
+                "		on mt.ModelTypeID = v.ModelID " +
                 "	inner join CarConstructionYear ct " +
-                "		on ct.CarConstructionYearID = v.ConstructionYear " +
+                "		on ct.CarConstructionYearID = v.ConstructionYearID " +
                 "where v.VehicleID ="+vehicleIDParam;
 
 
@@ -135,7 +135,7 @@ namespace CarStoreApplication.Controllers
                         cars.ModelID = Convert.ToString(row["Model"]);
                         cars.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
                         cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
-                        cars.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
+                        cars.VehiclePrice = Convert.ToString(row["VehiclePrice"]);
                         
                         cmd.Parameters.AddWithValue("@VehicleID", vehicleIDParam);
 

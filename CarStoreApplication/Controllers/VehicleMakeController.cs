@@ -82,14 +82,14 @@ namespace CarStoreApplication.Controllers
                 "	inner join DriveTypeDescription dt " +
                 "		on dt.DriveTypeID = v.DriveTypeID " +
                 "	inner join EngineDescriptionType eg " +
-                "		on eg.EngineDescriptionTypeID = v.EngineDescription " +
+                "		on eg.EngineDescriptionTypeID = v.EngineDescriptionID " +
                 "	inner join MakeType mk " +
-                "		on mk.MakeTypeID = v.Make " +
+                "		on mk.MakeTypeID = v.MakeID " +
                 "	inner join ModelType mt " +
-                "		on mt.ModelTypeID = v.Model " +
+                "		on mt.ModelTypeID = v.ModelID " +
                 "	inner join CarConstructionYear ct " +
-                "		on ct.CarConstructionYearID = v.ConstructionYear " +
-                "where v.Make =" + makeID;
+                "		on ct.CarConstructionYearID = v.ConstructionYearID " +
+                "where v.MakeID =" + makeID;
 
 
                 conn.Open();
@@ -119,7 +119,7 @@ namespace CarStoreApplication.Controllers
                         cars.ModelID = Convert.ToString(row["Model"]);
                         cars.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
                         cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
-                        cars.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
+                        cars.VehiclePrice = Convert.ToString(row["VehiclePrice"]);
 
                         cmd.Parameters.AddWithValue("@makeID", makeID);
 

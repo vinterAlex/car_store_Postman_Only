@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarsStore
 {
-    public class VehiclesDetailed
+    [Table("Vehicles")]
+    public class VehicleForDb
     {
-        // for the detailed view
+
+        [Key]
         public int VehicleID { get; set; }
-        public string DriveTypeID { get; set; }
-        public string EngineDescriptionID { get; set; }
-        public string MakeID { get; set; }
-        public string ModelID { get; set; }
+        public int DriveTypeID { get; set; }
+        public int EngineDescriptionID { get; set; }
+        public int MakeID { get; set; }
+        public int ModelID { get; set; }
         public int ConstructionYearID { get; set; }
         public DateTime ModifyDate { get; set; }
         public string VehiclePrice { get; set; }
+
     }
 }
