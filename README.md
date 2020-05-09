@@ -29,3 +29,16 @@ BODY: {
 To use EntityFramework with SQL:
 -- localpath:port/api/dbcontextvehicle/
 -- localpath:port/api/dbcontextvehicle/{vehicleID}
+
+# POST METHOD 
+-- [POST] localpath:port/api/dbcontextvehicle/
+```JSON 
+{
+	            "DriveTypeID" : 1,
+                    "EngineDescriptionID" : 1,
+                    "MakeID" : 1,
+                    "ModelID" : 1,
+                    "ConstructionYearID" : 1,
+                    "ModifyDate" : "2020-02-27T19:20:16.56",
+                    "VehiclePrice" : "9999"
+}```
