@@ -8,20 +8,14 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-
-
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
-    [Route("api/getcars")]
-    public class CarController : ControllerBase
+    [Route("api/[controller]")]
+    public class VehicleMakeController : ControllerBase
     {
-
-
-
-
         [HttpGet]
-        public IActionResult RetrieveCars()
+        public IActionResult GetVehicleMake()
         {
             try
             {
@@ -30,7 +24,7 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                cmd.CommandText = "select * from Vehicles;";
+                cmd.CommandText = "select MakeTypeID, Name from MakeType;";
                 conn.Open();
 
                 DataTable dt = new DataTable();
@@ -41,27 +35,22 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<Vehicles> carsList = new List<Vehicles>();
+                    List<MakeType> makeList = new List<MakeType>();
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        Vehicles car = new Vehicles();
+                        MakeType makeType = new MakeType();
 
                         //convert for all INT/Date's etc...
-                        car.VehicleID = Convert.ToInt32(row["VehicleID"]);
-                        car.DriveTypeID = Convert.ToInt32(row["DriveTypeID"]);
-                        car.EngineDescriptionID = Convert.ToInt32(row["EngineDescription"]);
-                        car.MakeID = Convert.ToInt32(row["Make"]);
-                        car.ModelID = Convert.ToInt32(row["Model"]);
-                        car.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
-                        car.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
-                        car.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
+                        makeType.MakeTypeID= Convert.ToInt32(row["MakeTypeID"]);
+                        makeType.Name = Convert.ToString(row["Name"]);
 
-                        carsList.Add(car);
+
+                        makeList.Add(makeType);
                     }
-                    
-                    return Ok(carsList);
+
+                    return Ok(makeList);
 
                 }
             }
@@ -69,16 +58,18 @@ namespace CarStoreApplication.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
             }
-
         }
 
 
 
-        // in API too look after the vehicle ID with detailed informations
-        [HttpGet("{vehicleIDParam}")]
-        public IActionResult RetrieveCar(int vehicleIDParam)
+        /// <summary>
+        /// To get the vehicle by the MakeID
+        /// </summary>
+        /// <param name="makeID"></param>
+        /// <returns></returns>
+        [HttpGet("{makeID}")]
+        public IActionResult GetVehicleByMakeID(int makeID)
         {
-
             try
             {
 
@@ -86,8 +77,7 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
-                cmd.CommandText= "select v.VehicleID,dt.Name[DriveTypeID],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
+                cmd.CommandText = "select v.VehicleID,dt.Name[DriveTypeID],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
                 "from Vehicles v " +
                 "	inner join DriveTypeDescription dt " +
                 "		on dt.DriveTypeID = v.DriveTypeID " +
@@ -99,7 +89,7 @@ namespace CarStoreApplication.Controllers
                 "		on mt.ModelTypeID = v.Model " +
                 "	inner join CarConstructionYear ct " +
                 "		on ct.CarConstructionYearID = v.ConstructionYear " +
-                "where v.VehicleID ="+vehicleIDParam;
+                "where v.Make =" + makeID;
 
 
                 conn.Open();
@@ -119,7 +109,7 @@ namespace CarStoreApplication.Controllers
                     foreach (DataRow row in dt.Rows)
                     {
                         VehiclesDetailed cars = new VehiclesDetailed();
-                        
+
 
                         //convert for all INT/Date's etc...
                         cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
@@ -130,8 +120,8 @@ namespace CarStoreApplication.Controllers
                         cars.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
                         cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
                         cars.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
-                        
-                        cmd.Parameters.AddWithValue("@VehicleID", vehicleIDParam);
+
+                        cmd.Parameters.AddWithValue("@makeID", makeID);
 
                         carsList.Add(cars);
                     }
@@ -144,8 +134,6 @@ namespace CarStoreApplication.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
             }
-
         }
-
     }
 }

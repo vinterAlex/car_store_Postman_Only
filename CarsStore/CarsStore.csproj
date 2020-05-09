@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MakeType.cs" />
     <Compile Include="Vehicles.cs" />
     <Compile Include="VehiclesDetailed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
