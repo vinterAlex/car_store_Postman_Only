@@ -11,3 +11,17 @@ Car store using postman and C#
 
 -- to get all the vehicles with that makeID
 "localpath:port/api/shop/vehiclemake/30" -- will return all vehicles with that make ID
+
+-- with POST: to create an entry in DB
+-- localpath:port/api/shop/addvehicle
+
+```JSON
+BODY: {
+	"DriveTypeID": 4,
+	"EngineDescription": 30,
+	"Make":37,
+	"Model":4,
+	"ConstructionYear":3,
+	"VehiclePrice":1
+}
+```
