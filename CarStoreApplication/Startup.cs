@@ -29,7 +29,7 @@ namespace CarStoreApplication
         }
     });
 
-
+            services.AddDbContext<VehiclesDBContext>(options => options.UseSqlServer(Utils.connectionString));
 
 
         }

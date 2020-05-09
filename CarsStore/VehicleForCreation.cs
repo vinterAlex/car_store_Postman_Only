@@ -10,13 +10,12 @@ namespace CarsStore
     public class VehicleForCreation
     {
         public int VehicleID { get; set; }
-        //[MaxLength(3)] //-- work only for strings
         
         public int DriveTypeID { get; set; }
-        public int EngineDescription { get; set; }
-        public int Make { get; set; }
-        public int Model { get; set; }
-        public int ConstructionYear { get; set; }
+        public int EngineDescriptionID { get; set; }
+        public int MakeID { get; set; }
+        public int ModelID { get; set; }
+        public int ConstructionYearID { get; set; }
         public DateTime ModifyDate { get; set; }
         public int VehiclePrice { get; set; }
 
