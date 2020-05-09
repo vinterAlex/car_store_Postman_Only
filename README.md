@@ -25,7 +25,8 @@ BODY: {
 	"VehiclePrice":1
 }
 ```
-
+# Entity Framework, DbContext + SQL Server connection
+# GET METHOD 
 To use EntityFramework with SQL:
 -- localpath:port/api/dbcontextvehicle/
 -- localpath:port/api/dbcontextvehicle/{vehicleID}
