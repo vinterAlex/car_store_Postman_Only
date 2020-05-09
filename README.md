@@ -41,4 +41,19 @@ To use EntityFramework with SQL:
                     "ConstructionYearID" : 1,
                     "ModifyDate" : "2020-02-27T19:20:16.56",
                     "VehiclePrice" : "9999"
-}```
+}
+```
+# PUT METHOD
+-- [PUT] localpath:port/api/dbcontextvehicle/
+```JSON 
+{
+	"VehicleID": 662,
+	"DriveTypeID" : 6,
+    "EngineDescriptionID" : 6,
+    "MakeID" : 6,
+    "ModelID" : 6,
+    "ConstructionYearID" : 6,
+    "ModifyDate" : "2020-02-27T19:20:16.56",
+    "VehiclePrice" : "0"
+}
+```
