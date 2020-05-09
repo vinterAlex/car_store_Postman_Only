@@ -35,21 +35,21 @@ To use EntityFramework with SQL:
 -- [POST] localpath:port/api/dbcontextvehicle/
 ```JSON 
 {
-	            "DriveTypeID" : 1,
-                    "EngineDescriptionID" : 1,
-                    "MakeID" : 1,
-                    "ModelID" : 1,
-                    "ConstructionYearID" : 1,
-                    "ModifyDate" : "2020-02-27T19:20:16.56",
-                    "VehiclePrice" : "9999"
+    "DriveTypeID" : 1,
+    "EngineDescriptionID" : 1,
+    "MakeID" : 1,
+    "ModelID" : 1,
+    "ConstructionYearID" : 1,
+    "ModifyDate" : "2020-02-27T19:20:16.56",
+    "VehiclePrice" : "9999"
 }
 ```
 # PUT METHOD
 -- [PUT] localpath:port/api/dbcontextvehicle/
 ```JSON 
 {
-	"VehicleID": 662,
-	"DriveTypeID" : 6,
+    "VehicleID": 662,
+    "DriveTypeID" : 6,
     "EngineDescriptionID" : 6,
     "MakeID" : 6,
     "ModelID" : 6,
