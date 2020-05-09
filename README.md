@@ -25,3 +25,7 @@ BODY: {
 	"VehiclePrice":1
 }
 ```
+
+To use EntityFramework with SQL:
+-- localpath:port/api/dbcontextvehicle/
+-- localpath:port/api/dbcontextvehicle/{vehicleID}
