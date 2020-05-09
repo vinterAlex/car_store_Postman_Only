@@ -17,8 +17,6 @@ namespace CarStoreApplication.Controllers
     public class VehicleController : ControllerBase
     {
 
-
-
         /// <summary>
         /// Get the list of all vehicles
         /// </summary>
