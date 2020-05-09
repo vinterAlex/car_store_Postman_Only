@@ -101,6 +101,26 @@ namespace CarStoreApplication.Controllers
 
 
         }
+
+        /// <summary>
+        /// To delete an entry with EF and DB Context
+        /// </summary>
+        /// <param name="idToRemove"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public IActionResult RemoveVehicle(int idToRemove)
+        {
+            var checkEntry = _context.VehiclesDbSet
+                .Where(s => s.VehicleID == idToRemove)
+                .FirstOrDefault();
+
+            _context.Entry(checkEntry).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+
+            _context.SaveChanges();
+
+            return Ok("Entry deleted successfully");
+        }
+        
         
 
 
