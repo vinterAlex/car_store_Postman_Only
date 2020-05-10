@@ -58,3 +58,6 @@ To use EntityFramework with SQL:
     "VehiclePrice" : "0"
 }
 ```
+
+# DELETE METHOD
+-- [DELETE] localpath/api/dbvehicle?idToRemove=662  // to be removed
