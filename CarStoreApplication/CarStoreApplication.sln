@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarStoreApplication", "CarS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesUtils", "..\VehiclesUtils\VehiclesUtils.csproj", "{523930D1-3491-4A4B-8B7F-39451D50C4EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarStoreApplication.UI", "..\CarStoreApplication.UI\CarStoreApplication.UI.csproj", "{B9215ADA-58A0-4D74-B897-39155E87D209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{523930D1-3491-4A4B-8B7F-39451D50C4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{523930D1-3491-4A4B-8B7F-39451D50C4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{523930D1-3491-4A4B-8B7F-39451D50C4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9215ADA-58A0-4D74-B897-39155E87D209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9215ADA-58A0-4D74-B897-39155E87D209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9215ADA-58A0-4D74-B897-39155E87D209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9215ADA-58A0-4D74-B897-39155E87D209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
