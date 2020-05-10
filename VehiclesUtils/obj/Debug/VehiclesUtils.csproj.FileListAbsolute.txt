@@ -1,0 +1,6 @@
+Y:\CarStore\VehiclesUtils\bin\Debug\VehiclesUtils.dll
+Y:\CarStore\VehiclesUtils\bin\Debug\VehiclesUtils.pdb
+Y:\CarStore\VehiclesUtils\bin\Debug\System.ComponentModel.Annotations.dll
+Y:\CarStore\VehiclesUtils\obj\Debug\VehiclesUtils.csproj.CopyComplete
+Y:\CarStore\VehiclesUtils\obj\Debug\VehiclesUtils.dll
+Y:\CarStore\VehiclesUtils\obj\Debug\VehiclesUtils.pdb

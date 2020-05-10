@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CarsStore;
+using VehicleUtils;
 using CarStoreApplication.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +29,7 @@ namespace CarStoreApplication
         }
     });
 
+            //for the DB
             services.AddDbContext<VehiclesDBContext>(options => options.UseSqlServer(Utils.connectionString));
 
 
@@ -45,6 +46,7 @@ namespace CarStoreApplication
 
             app.UseStatusCodePages(); //simple http message 
             app.UseMvc();
+            
         }
     }
 }

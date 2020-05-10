@@ -1,4 +1,4 @@
-﻿using CarsStore;
+﻿using VehicleUtils;
 using CarStoreApplication.Context;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -108,7 +108,7 @@ namespace CarStoreApplication.Controllers
         /// <param name="idToRemove"></param>
         /// <returns></returns>
         [HttpDelete]
-        public IActionResult RemoveVehicle(int idToRemove)
+        public IActionResult RemoveVehicle(int idToRemove) // URL ?idToRemove={id}
         {
             var checkEntry = _context.VehiclesDbSet
                 .Where(s => s.VehicleID == idToRemove)
