@@ -27,7 +27,8 @@ namespace CarStoreApplication.Controllers
                 cmd.Connection = conn; //to open the connection
                 //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
                 cmd.CommandText = "INSERT INTO Vehicles (DriveTypeID,EngineDescriptionID,MakeID,ModelID,ConstructionYearID,ModifyDate,VehiclePrice)" +
-                                          "VALUES(" + vItem.DriveTypeID + ", " + vItem.EngineDescriptionID + ", " + vItem.MakeID + ", " + vItem.ModelID + ", " + vItem.ConstructionYearID + "," + " GETUTCDATE()," + vItem.VehiclePrice + ")";
+                    "Values(@DriveTypeID,@EngineDescription,@MakeID,@ModelID,@ConstructionYearID,@VehiclePrice)";
+                                         // "VALUES(" + vItem.DriveTypeID + ", " + vItem.EngineDescriptionID + ", " + vItem.MakeID + ", " + vItem.ModelID + ", " + vItem.ConstructionYearID + "," + " GETUTCDATE()," + vItem.VehiclePrice + ")";
 
 
                 conn.Open();
@@ -40,7 +41,7 @@ namespace CarStoreApplication.Controllers
 
                     VehicleForCreation add_vehicle = new VehicleForCreation();
 
-                    cmd.Parameters.AddWithValue("@DriveTypeID", vItem.DriveTypeID);
+                    cmd.Parameters.AddWithValue("@DriveTypeID", SqlDbType.Int).Value = vItem.DriveTypeID;
                     cmd.Parameters.AddWithValue("@EngineDescription", vItem.EngineDescriptionID);
                     cmd.Parameters.AddWithValue("@MakeID", vItem.MakeID);
                     cmd.Parameters.AddWithValue("@ModelID", vItem.ModelID);
