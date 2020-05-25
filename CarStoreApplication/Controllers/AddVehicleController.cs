@@ -9,7 +9,7 @@ using VehicleUtils;
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
-    [Route("api/shop/[controller]")]
+    [Route("api/shop/vehicle/[controller]")]
     public class AddVehicleController : ControllerBase
     {
 

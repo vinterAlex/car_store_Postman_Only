@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
-    [Route("api/shop/[controller]")]
+    [Route("api/shop/vehicle/[controller]")]
     public class GetVehicleByMakeController : ControllerBase
     {
 
