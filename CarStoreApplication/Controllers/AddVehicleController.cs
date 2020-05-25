@@ -25,13 +25,13 @@ namespace CarStoreApplication.Controllers
                 SqlConnection conn = new SqlConnection(Utils.connectionString);
                 SqlCommand cmd = new SqlCommand();
 
+                
+
                 cmd.Connection = conn; //to open the connection
                 //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
                 cmd.CommandText = "INSERT INTO Vehicles (DriveTypeID,EngineDescriptionID,MakeID,ModelID,ConstructionYearID,ModifyDate,VehiclePrice)" +
                     "Values(@DriveTypeID,@EngineDescription,@MakeID,@ModelID,@ConstructionYearID,@ModifyDate,@VehiclePrice)";
-                
-                
-                
+
 
                 cmd.Parameters.AddWithValue("@DriveTypeID", SqlDbType.Int).Value = vItem.DriveTypeID;
                 cmd.Parameters.AddWithValue("@EngineDescription", vItem.EngineDescriptionID);
@@ -40,6 +40,8 @@ namespace CarStoreApplication.Controllers
                 cmd.Parameters.AddWithValue("@ConstructionYearID", vItem.ConstructionYearID);
                 cmd.Parameters.AddWithValue("@ModifyDate", vItem.ModifyDate=DateTime.Now);
                 cmd.Parameters.AddWithValue("@VehiclePrice", vItem.VehiclePrice);
+
+
 
                 conn.Open();
 

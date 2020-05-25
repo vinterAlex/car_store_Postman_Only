@@ -12,7 +12,7 @@ namespace CarStoreApplication.Controllers
 {
     [ApiController]
     [Route("api/shop/[controller]")]
-    public class VehicleMakeController : ControllerBase
+    public class MakeController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetVehicleMake()

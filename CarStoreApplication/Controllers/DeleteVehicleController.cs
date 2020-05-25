@@ -39,7 +39,7 @@ namespace CarStoreApplication.Controllers
 
                     VehicleForCreation add_vehicle = new VehicleForCreation();
 
-                    return Ok("Vehicle "+vehicleID.ToString() +" Deleted successfully!");
+                    return Ok("Vehicle ["+vehicleID.ToString() +"] Deleted successfully!");
 
                 }
             }
