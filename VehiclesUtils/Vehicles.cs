@@ -19,7 +19,7 @@ namespace VehicleUtils
         public int EngineDescriptionID { get; set; }
         public int MakeID { get; set; }
         public int ModelID { get; set; }
-        public int ConstructionYearID { get; set; }
+        public string ConstructionYear { get; set; }
         public DateTime ModifyDate { get; set; }
         public int VehiclePrice { get; set; }
 

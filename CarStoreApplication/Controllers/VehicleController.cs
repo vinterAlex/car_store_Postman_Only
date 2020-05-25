@@ -31,7 +31,11 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                cmd.CommandText = "select * from Vehicles;";
+                cmd.CommandText = "select v.VehicleID,v.DriveTypeID,v.EngineDescriptionID,v.MakeID,v.ModelID,ct.Name[ConstructionYear],ModifyDate, " +
+                    "VehiclePrice from Vehicles v " +
+                    " inner join CarConstructionYear ct " +
+                    " on ct.CarConstructionYearID = v.ConstructionYearID ;";
+
                 conn.Open();
 
                 DataTable dt = new DataTable();
@@ -55,7 +59,7 @@ namespace CarStoreApplication.Controllers
                         car.EngineDescriptionID = Convert.ToInt32(row["EngineDescriptionID"]);
                         car.MakeID = Convert.ToInt32(row["MakeID"]);
                         car.ModelID = Convert.ToInt32(row["ModelID"]);
-                        car.ConstructionYearID = Convert.ToInt32(row["ConstructionYearID"]);
+                        car.ConstructionYear = Convert.ToString(row["ConstructionYear"]);
                         car.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
                         car.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
 

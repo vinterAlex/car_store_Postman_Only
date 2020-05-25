@@ -12,10 +12,11 @@ namespace CarStoreApplication.Controllers
 {
     [ApiController]
     [Route("api/shop/[controller]")]
-    public class GetVehicleByYearController : ControllerBase
+    public class GetVehicleByMakeController : ControllerBase
     {
+
         [HttpGet]
-        public IActionResult GetByYear(int constYear)
+        public IActionResult GetByMake(string vehicleMake)
         {
             try
             {
@@ -24,7 +25,7 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                
+
                 cmd.CommandText = "select v.VehicleID,dt.Name[DriveType],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice  " +
                 "from Vehicles v " +
                 "	inner join DriveTypeDescription dt " +
@@ -37,12 +38,12 @@ namespace CarStoreApplication.Controllers
                 "		on mt.ModelTypeID = v.ModelID " +
                 "	inner join CarConstructionYear ct " +
                 "		on ct.CarConstructionYearID = v.ConstructionYearID " +
-                " where ct.Name = @constructionYear";
+                " where mk.Name = @vehicleMake";
 
                 SqlParameter param = new SqlParameter();
 
-                param.ParameterName = "@constructionYear";
-                param.Value = constYear;
+                param.ParameterName = "@vehicleMake";
+                param.Value = vehicleMake;
 
                 cmd.Parameters.Add(param);
 
@@ -89,6 +90,5 @@ namespace CarStoreApplication.Controllers
             }
 
         }
-
     }
 }

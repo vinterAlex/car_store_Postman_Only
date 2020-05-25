@@ -8,16 +8,16 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
+
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
-    
     public class HomeController : ControllerBase
     {
         [HttpGet("")]
         public IActionResult Home()
         {
-            return Ok("Hello from HomeController!");
+            return Ok("Hello!");
         }
     }
 }
