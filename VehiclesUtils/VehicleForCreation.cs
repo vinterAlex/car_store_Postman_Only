@@ -10,7 +10,6 @@ namespace VehicleUtils
     public class VehicleForCreation
     {
         public int VehicleID { get; set; }
-        
         public int DriveTypeID { get; set; }
         public int EngineDescriptionID { get; set; }
         public int MakeID { get; set; }
