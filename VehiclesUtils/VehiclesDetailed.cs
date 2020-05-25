@@ -10,11 +10,11 @@ namespace VehicleUtils
     {
         // for the detailed view
         public int VehicleID { get; set; }
-        public string DriveTypeID { get; set; }
-        public string EngineDescriptionID { get; set; }
-        public string MakeID { get; set; }
-        public string ModelID { get; set; }
-        public int ConstructionYearID { get; set; }
+        public string DriveType { get; set; }
+        public string EngineDescription { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int ConstructionYear { get; set; }
         public DateTime ModifyDate { get; set; }
         public string VehiclePrice { get; set; }
     }

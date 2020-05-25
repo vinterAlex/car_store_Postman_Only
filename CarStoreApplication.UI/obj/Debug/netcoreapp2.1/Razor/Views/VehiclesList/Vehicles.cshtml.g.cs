@@ -63,7 +63,7 @@ using CarStoreApplication.UI.Models;
             WriteLiteral("\r\n<h2>Vehicles</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(121, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d93a710c73044f5e8f817d5715058fa8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ac367d90bf58460ab46bfa479f401530", async() => {
                 BeginContext(144, 10, true);
                 WriteLiteral("Create New");
                 EndContext();

@@ -24,7 +24,7 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                cmd.CommandText = "select MakeTypeID, Name from MakeType;";
+                cmd.CommandText = "select MakeTypeID, Name[Description] from MakeType;";
                 conn.Open();
 
                 DataTable dt = new DataTable();
@@ -44,7 +44,7 @@ namespace CarStoreApplication.Controllers
 
                         //convert for all INT/Date's etc...
                         makeType.MakeTypeID= Convert.ToInt32(row["MakeTypeID"]);
-                        makeType.Name = Convert.ToString(row["Name"]);
+                        makeType.Description= Convert.ToString(row["Description"]);
 
 
                         makeList.Add(makeType);
@@ -77,20 +77,16 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                cmd.CommandText = "select v.VehicleID,dt.Name[DriveTypeID],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
-                "from Vehicles v " +
-                "	inner join DriveTypeDescription dt " +
-                "		on dt.DriveTypeID = v.DriveTypeID " +
-                "	inner join EngineDescriptionType eg " +
-                "		on eg.EngineDescriptionTypeID = v.EngineDescriptionID " +
-                "	inner join MakeType mk " +
-                "		on mk.MakeTypeID = v.MakeID " +
-                "	inner join ModelType mt " +
-                "		on mt.ModelTypeID = v.ModelID " +
-                "	inner join CarConstructionYear ct " +
-                "		on ct.CarConstructionYearID = v.ConstructionYearID " +
-                "where v.MakeID =" + makeID;
+                cmd.CommandText = "select MakeTypeID, Name[Description] from MakeType where MakeTypeID = @makeID;";
 
+                SqlParameter param = new SqlParameter();
+
+                param.ParameterName = "@makeID";
+                param.Value = makeID;
+
+                cmd.Parameters.Add(param);
+
+                    
 
                 conn.Open();
 
@@ -102,26 +98,16 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<VehiclesDetailed> carsList = new List<VehiclesDetailed>();
+                    List<MakeType> carsList = new List<MakeType>();
 
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        VehiclesDetailed cars = new VehiclesDetailed();
+                        MakeType cars = new MakeType();
 
-
-                        //convert for all INT/Date's etc...
-                        cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
-                        cars.DriveTypeID = Convert.ToString(row["DriveTypeID"]);
-                        cars.EngineDescriptionID = Convert.ToString(row["EngineDescription"]);
-                        cars.MakeID = Convert.ToString(row["Make"]);
-                        cars.ModelID = Convert.ToString(row["Model"]);
-                        cars.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
-                        cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
-                        cars.VehiclePrice = Convert.ToString(row["VehiclePrice"]);
-
-                        cmd.Parameters.AddWithValue("@makeID", makeID);
+                        cars.MakeTypeID = Convert.ToInt32(row["MakeTypeID"]);
+                        cars.Description = Convert.ToString(row["Description"]);
 
                         carsList.Add(cars);
                     }
