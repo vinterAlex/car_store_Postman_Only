@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -27,9 +28,18 @@ namespace CarStoreApplication.Controllers
                 cmd.Connection = conn; //to open the connection
                 //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
                 cmd.CommandText = "INSERT INTO Vehicles (DriveTypeID,EngineDescriptionID,MakeID,ModelID,ConstructionYearID,ModifyDate,VehiclePrice)" +
-                    "Values(@DriveTypeID,@EngineDescription,@MakeID,@ModelID,@ConstructionYearID,@VehiclePrice)";
-                                         // "VALUES(" + vItem.DriveTypeID + ", " + vItem.EngineDescriptionID + ", " + vItem.MakeID + ", " + vItem.ModelID + ", " + vItem.ConstructionYearID + "," + " GETUTCDATE()," + vItem.VehiclePrice + ")";
+                    "Values(@DriveTypeID,@EngineDescription,@MakeID,@ModelID,@ConstructionYearID,@ModifyDate,@VehiclePrice)";
+                
+                
+                
 
+                cmd.Parameters.AddWithValue("@DriveTypeID", SqlDbType.Int).Value = vItem.DriveTypeID;
+                cmd.Parameters.AddWithValue("@EngineDescription", vItem.EngineDescriptionID);
+                cmd.Parameters.AddWithValue("@MakeID", vItem.MakeID);
+                cmd.Parameters.AddWithValue("@ModelID", vItem.ModelID);
+                cmd.Parameters.AddWithValue("@ConstructionYearID", vItem.ConstructionYearID);
+                cmd.Parameters.AddWithValue("@ModifyDate", vItem.ModifyDate=DateTime.Now);
+                cmd.Parameters.AddWithValue("@VehiclePrice", vItem.VehiclePrice);
 
                 conn.Open();
 
@@ -39,14 +49,6 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    VehicleForCreation add_vehicle = new VehicleForCreation();
-
-                    cmd.Parameters.AddWithValue("@DriveTypeID", SqlDbType.Int).Value = vItem.DriveTypeID;
-                    cmd.Parameters.AddWithValue("@EngineDescription", vItem.EngineDescriptionID);
-                    cmd.Parameters.AddWithValue("@MakeID", vItem.MakeID);
-                    cmd.Parameters.AddWithValue("@ModelID", vItem.ModelID);
-                    cmd.Parameters.AddWithValue("@ConstructionYearID", vItem.ConstructionYearID);
-                    cmd.Parameters.AddWithValue("@VehiclePrice", vItem.VehiclePrice);
 
                     return Ok("Vehicle Added successfully!");
 

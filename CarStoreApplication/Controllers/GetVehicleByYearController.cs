@@ -24,8 +24,8 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
-                cmd.CommandText = "select v.VehicleID,dt.Name[DriveType],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
+                
+                cmd.CommandText = "select v.VehicleID,dt.Name[DriveType],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice  " +
                 "from Vehicles v " +
                 "	inner join DriveTypeDescription dt " +
                 "		on dt.DriveTypeID = v.DriveTypeID " +
