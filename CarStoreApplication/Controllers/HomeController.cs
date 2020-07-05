@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 
 namespace CarStoreApplication.Controllers
 {
@@ -17,7 +17,11 @@ namespace CarStoreApplication.Controllers
         [HttpGet("")]
         public IActionResult Home()
         {
-            return Ok("Hello!");
+
+
+            return Ok("Home Page here...");
+
+            
         }
     }
 }

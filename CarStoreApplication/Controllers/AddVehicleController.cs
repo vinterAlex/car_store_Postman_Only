@@ -16,7 +16,6 @@ namespace CarStoreApplication.Controllers
 
 
         [HttpPost]
-        //   public IActionResult AddVehicle([FromBody] int DriveTypeID, int EngineDescription, int Make, int Model, int ConstructionYear, int VehiclePrice)
         public IActionResult AddVehicle([FromBody] VehicleForCreation vItem)
         {
             try
