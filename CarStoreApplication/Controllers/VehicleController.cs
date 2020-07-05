@@ -31,7 +31,11 @@ namespace CarStoreApplication.Controllers
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                cmd.CommandText = "select * from Vehicles;";
+                cmd.CommandText = "select v.VehicleID,v.DriveTypeID,v.EngineDescriptionID,v.MakeID,v.ModelID,ct.Name[ConstructionYear],ModifyDate, " +
+                    "VehiclePrice from Vehicles v " +
+                    " inner join CarConstructionYear ct " +
+                    " on ct.CarConstructionYearID = v.ConstructionYearID ;";
+
                 conn.Open();
 
                 DataTable dt = new DataTable();
@@ -55,7 +59,7 @@ namespace CarStoreApplication.Controllers
                         car.EngineDescriptionID = Convert.ToInt32(row["EngineDescriptionID"]);
                         car.MakeID = Convert.ToInt32(row["MakeID"]);
                         car.ModelID = Convert.ToInt32(row["ModelID"]);
-                        car.ConstructionYearID = Convert.ToInt32(row["ConstructionYearID"]);
+                        car.ConstructionYear = Convert.ToString(row["ConstructionYear"]);
                         car.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
                         car.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
 
@@ -94,7 +98,7 @@ namespace CarStoreApplication.Controllers
 
                 cmd.Connection = conn;
                 //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
-                cmd.CommandText= "select v.VehicleID,dt.Name[DriveTypeID],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
+                cmd.CommandText = "select v.VehicleID,dt.Name[DriveType],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
                 "from Vehicles v " +
                 "	inner join DriveTypeDescription dt " +
                 "		on dt.DriveTypeID = v.DriveTypeID " +
@@ -106,7 +110,15 @@ namespace CarStoreApplication.Controllers
                 "		on mt.ModelTypeID = v.ModelID " +
                 "	inner join CarConstructionYear ct " +
                 "		on ct.CarConstructionYearID = v.ConstructionYearID " +
-                "where v.VehicleID ="+vehicleIDParam;
+                " where v.VehicleID = @VehicleID";
+
+                SqlParameter param = new SqlParameter();
+
+                param.ParameterName = "@VehicleID";
+                param.Value = vehicleIDParam;
+
+                cmd.Parameters.Add(param);
+
 
 
                 conn.Open();
@@ -126,19 +138,16 @@ namespace CarStoreApplication.Controllers
                     foreach (DataRow row in dt.Rows)
                     {
                         VehiclesDetailed cars = new VehiclesDetailed();
-                        
 
-                        //convert for all INT/Date's etc...
                         cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
-                        cars.DriveTypeID = Convert.ToString(row["DriveTypeID"]);
-                        cars.EngineDescriptionID = Convert.ToString(row["EngineDescription"]);
-                        cars.MakeID = Convert.ToString(row["Make"]);
-                        cars.ModelID = Convert.ToString(row["Model"]);
-                        cars.ConstructionYearID = Convert.ToInt32(row["ConstructionYear"]);
+                        cars.DriveType = Convert.ToString(row["DriveType"]);
+                        cars.EngineDescription = Convert.ToString(row["EngineDescription"]);
+                        cars.Make = Convert.ToString(row["Make"]);
+                        cars.Model = Convert.ToString(row["Model"]);
+                        cars.ConstructionYear = Convert.ToInt32(row["ConstructionYear"]);
                         cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
                         cars.VehiclePrice = Convert.ToString(row["VehiclePrice"]);
-                        
-                        cmd.Parameters.AddWithValue("@VehicleID", vehicleIDParam);
+
 
                         carsList.Add(cars);
                     }
@@ -153,6 +162,12 @@ namespace CarStoreApplication.Controllers
             }
 
         }
+
+
+
+
+
+
 
     }
 }

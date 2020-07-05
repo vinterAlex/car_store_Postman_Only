@@ -9,6 +9,6 @@ namespace VehicleUtils
     public class MakeType
     {
         public int MakeTypeID { get; set; }
-        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }
