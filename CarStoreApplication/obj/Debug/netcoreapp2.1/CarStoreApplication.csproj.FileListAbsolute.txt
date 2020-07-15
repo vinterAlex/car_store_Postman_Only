@@ -1,3 +1,4 @@
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csprojAssemblyReference.cache
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cache
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cs
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.AssemblyInfoInputs.cache
