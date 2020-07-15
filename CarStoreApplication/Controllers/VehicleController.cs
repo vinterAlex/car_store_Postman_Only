@@ -40,6 +40,17 @@ namespace CarStoreApplication.Controllers
 
         }
 
+        [HttpGet("vehiclebyyear")]
+        public IActionResult GetVehicleByYear(int year)
+        {
+            return Ok(methods.GetVehicleByYear(year));
+        }
+
+        [HttpGet("vehiclebymake")]
+        public IActionResult GetVehicleByMake(string make)
+        {
+            return Ok(methods.GetVehicleByMake(make));
+        }
 
 
         [HttpPost("createvehicle")]
@@ -69,17 +80,8 @@ namespace CarStoreApplication.Controllers
         /// Get Vehicle by Year
         /// </summary>
 
-        [ApiController]
-        [Route("api/shop/[controller]")]
-        public class VehicleByYear : ControllerBase
-        {
-            VehicleMethods methods = new VehicleMethods();
-            [HttpGet]
-            public IActionResult GetVehicleByYear(int year)
-            {
-                return Ok(methods.GetVehicleByYear(year));
-            }
-        }
+
+
 
 
     }
