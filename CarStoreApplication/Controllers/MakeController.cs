@@ -67,14 +67,6 @@ namespace CarStoreApplication.Controllers
 
 
 
-        /// <summary>
-        /// To get the vehicle by the MakeID
-        /// </summary>
-        /// 
-        /// http://localhost:51680/api/shop/make/4
-        /// 
-        /// <param name="makeID"></param>
-        /// <returns></returns>
         [HttpGet("{makeID}")]
         public IActionResult GetVehicleByMakeID(int makeID)
         {

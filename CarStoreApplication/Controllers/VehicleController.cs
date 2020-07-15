@@ -76,9 +76,7 @@ namespace CarStoreApplication.Controllers
             return Ok(methods.DeleteVehicle(vehicleID)) ;
         }
 
-        /// <summary>
-        /// Get Vehicle by Year
-        /// </summary>
+
 
 
 

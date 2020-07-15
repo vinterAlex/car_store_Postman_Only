@@ -18,7 +18,6 @@ namespace CarStoreApplication.Controllers
         public IActionResult Home()
         {
 
-
             return Ok("Home Page here...");
 
             
