@@ -8,168 +8,78 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Models;
+using CarStoreApplication.Methods;
 
 namespace CarStoreApplication.Controllers
 {
+    
+
+
+
+
     [ApiController]
     [Route("api/shop/[controller]")]
     public class VehicleController : ControllerBase
     {
+        VehicleMethods methods = new VehicleMethods();
 
-        /// <summary>
-        /// Get the list of all vehicles
-        /// http://localhost:51680/api/shop/vehicle/
-        /// </summary>
-        /// <returns></returns>
+
         [HttpGet]
-        public IActionResult RetrieveVehicle()
+        public  IActionResult GetVehicles()
         {
-            try
-            {
+            var result = methods.RetrieveVehicles();
+            return Ok(result);
+        }
 
-                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.Connection = conn;
-                cmd.CommandText = "select v.VehicleID,v.DriveTypeID,v.EngineDescriptionID,v.MakeID,v.ModelID,ct.Name[ConstructionYear],ModifyDate, " +
-                    "VehiclePrice from Vehicles v " +
-                    " inner join CarConstructionYear ct " +
-                    " on ct.CarConstructionYearID = v.ConstructionYearID ;";
-
-                conn.Open();
-
-                DataTable dt = new DataTable();
-
-
-
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    dt.Load(dr);
-
-                    List<Vehicle> carsList = new List<Vehicle>();
-
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        Vehicle car = new Vehicle();
-
-                        //convert for all INT/Date's etc...
-                        car.VehicleID = Convert.ToInt32(row["VehicleID"]);
-                        car.DriveTypeID = Convert.ToInt32(row["DriveTypeID"]);
-                        car.EngineDescriptionID = Convert.ToInt32(row["EngineDescriptionID"]);
-                        car.MakeID = Convert.ToInt32(row["MakeID"]);
-                        car.ModelID = Convert.ToInt32(row["ModelID"]);
-                        car.ConstructionYear = Convert.ToString(row["ConstructionYear"]);
-                        car.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
-                        car.VehiclePrice = Convert.ToInt32(row["VehiclePrice"]);
-
-                        carsList.Add(car);
-                    }
-
-                    return Ok(carsList);
-                    
-
-                }
-            }
-            catch (SqlException sqlEx)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
-            }
+        [HttpGet("{vehicleIDParam}")]
+        public  IActionResult GetVehicleById(int vehicleIDParam)
+        {
+            var result = methods.RetrieveVehicleById(vehicleIDParam);
+            
+            return Ok(result);
 
         }
 
 
+
+        [HttpPost("createvehicle")]
+        public IActionResult AddNewVehicle([FromBody] CreateVehicle vItem)
+        {
+            var result = methods.AddNewVehicle(vItem);
+            
+            return Ok(result);
+        }
+
+        [HttpPut("updatevehicle")]
+        public  IActionResult UpdateVehicle(int vehicleID, [FromBody]CreateVehicle updateVehicleItem)
+        {
+            var result =  methods.UpdateVehicle(vehicleID,updateVehicleItem);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("deletevehicle")]
+        public IActionResult DeleteVehicle(int vehicleID)
+        {
+            
+            return Ok(methods.DeleteVehicle(vehicleID)) ;
+        }
 
         /// <summary>
-        /// Find vehicles based on the ID
+        /// Get Vehicle by Year
         /// </summary>
-        /// 
-        /// http://localhost:51680/api/shop/vehicle/674
-        /// 
-        /// <param name="vehicleIDParam"></param>
-        /// <returns></returns>
-        // in API too look after the vehicle ID with detailed informations
-        [HttpGet("{vehicleIDParam}")]
-        public IActionResult RetrieveVehicle(int vehicleIDParam)
+
+        [ApiController]
+        [Route("api/shop/[controller]")]
+        public class VehicleByYear : ControllerBase
         {
-
-            try
+            VehicleMethods methods = new VehicleMethods();
+            [HttpGet]
+            public IActionResult GetVehicleByYear(int year)
             {
-
-                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.Connection = conn;
-                //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
-                cmd.CommandText = "select v.VehicleID,dt.Name[DriveType],eg.Name[EngineDescription],mk.Name[Make],mt.Name[Model],ct.Name[ConstructionYear],v.ModifyDate,v.VehiclePrice " +
-                "from Vehicles v " +
-                "	inner join DriveTypeDescription dt " +
-                "		on dt.DriveTypeID = v.DriveTypeID " +
-                "	inner join EngineDescriptionType eg " +
-                "		on eg.EngineDescriptionTypeID = v.EngineDescriptionID " +
-                "	inner join MakeType mk " +
-                "		on mk.MakeTypeID = v.MakeID " +
-                "	inner join ModelType mt " +
-                "		on mt.ModelTypeID = v.ModelID " +
-                "	inner join CarConstructionYear ct " +
-                "		on ct.CarConstructionYearID = v.ConstructionYearID " +
-                " where v.VehicleID = @VehicleID";
-
-                SqlParameter param = new SqlParameter();
-
-                param.ParameterName = "@VehicleID";
-                param.Value = vehicleIDParam;
-
-                cmd.Parameters.Add(param);
-
-
-
-                conn.Open();
-
-                DataTable dt = new DataTable();
-
-
-
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    dt.Load(dr);
-
-                    List<VehicleDetailed> carsList = new List<VehicleDetailed>();
-
-
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        VehicleDetailed cars = new VehicleDetailed();
-
-                        cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
-                        cars.DriveType = Convert.ToString(row["DriveType"]);
-                        cars.EngineDescription = Convert.ToString(row["EngineDescription"]);
-                        cars.Make = Convert.ToString(row["Make"]);
-                        cars.Model = Convert.ToString(row["Model"]);
-                        cars.ConstructionYear = Convert.ToInt32(row["ConstructionYear"]);
-                        cars.ModifyDate = Convert.ToDateTime(row["ModifyDate"]);
-                        cars.VehiclePrice = Convert.ToString(row["VehiclePrice"]);
-
-
-                        carsList.Add(cars);
-                    }
-
-                    return Ok(carsList);
-
-                }
+                return Ok(methods.GetVehicleByYear(year));
             }
-            catch (SqlException sqlEx)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
-            }
-
         }
-
-
-
-
-
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using Models;
+using Utils;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -39,15 +40,15 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<MakeType> makeList = new List<MakeType>();
+                    List<Make> makeList = new List<Make>();
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        MakeType makeType = new MakeType();
+                        Make makeType = new Make();
 
                         //convert for all INT/Date's etc...
-                        makeType.MakeTypeID= Convert.ToInt32(row["MakeTypeID"]);
+                        makeType.MakeID= Convert.ToInt32(row["MakeTypeID"]);
                         makeType.Description= Convert.ToString(row["Description"]);
 
 
@@ -105,15 +106,15 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<MakeType> carsList = new List<MakeType>();
+                    List<Make> carsList = new List<Make>();
 
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        MakeType cars = new MakeType();
+                        Make cars = new Make();
 
-                        cars.MakeTypeID = Convert.ToInt32(row["MakeTypeID"]);
+                        cars.MakeID = Convert.ToInt32(row["MakeTypeID"]);
                         cars.Description = Convert.ToString(row["Description"]);
 
                         carsList.Add(cars);

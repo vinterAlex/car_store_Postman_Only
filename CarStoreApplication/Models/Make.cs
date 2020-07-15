@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class MakeType
+    public class Make
     {
-        public int MakeTypeID { get; set; }
+        public int MakeID { get; set; }
         public string Description { get; set; }
     }
 }
