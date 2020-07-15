@@ -27,7 +27,7 @@ namespace CarStoreApplication.Controllers
             try
             {
 
-                SqlConnection conn = new SqlConnection(Utils.connectionString);
+                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;

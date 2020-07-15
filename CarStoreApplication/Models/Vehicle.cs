@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace VehicleUtils
 {
     
-    public class Vehicles
+    public class Vehicle
     {
 
         [Key]
