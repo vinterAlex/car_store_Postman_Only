@@ -12,7 +12,19 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/vehicle/[controller]")]
     public class AddVehicleController : ControllerBase
     {
-
+        /// <summary>
+        /// http://localhost:51680/api/shop/vehicle/addvehicle
+        ///     {
+        ///     "DriveTypeID": 1,
+        //       "EngineDescriptionID": 1,
+        //       "MakeID":2,
+        //       "ModelID":3,
+        //       "ConstructionYearID":3,
+        //       "VehiclePrice":12500
+         //     }
+        /// </summary>
+        /// <param name="vItem"></param>
+        /// <returns></returns>
 
 
         [HttpPost]
@@ -49,6 +61,7 @@ namespace CarStoreApplication.Controllers
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
                     dt.Load(dr);
+
 
 
                     return Ok("Vehicle Added successfully!");

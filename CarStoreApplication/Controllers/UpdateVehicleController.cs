@@ -14,7 +14,20 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/vehicle/[controller]")]
     public class UpdateVehicleController : ControllerBase
     {
-
+        /// <summary>
+        /// http://localhost:51680/api/shop/vehicle/updatevehicle?vehicleid=674
+        ///        {"DriveTypeID": 2,
+        ///        "EngineDescriptionID": 2,
+        ///        "MakeID":1,
+        ///        "ModelID":1,
+        ///        "ConstructionYearID":1,
+        ///        "VehiclePrice":15532
+        ///         }
+        /// 
+        /// </summary>
+        /// <param name="vehicleID"></param>
+        /// <param name="updateVehicleItem"></param>
+        /// <returns></returns>
         [HttpPut]
         public IActionResult UpdateVehicle(int vehicleID,[FromBody]VehicleForCreation updateVehicleItem)
         {

@@ -29,11 +29,7 @@
         },
         "frameworks": {
           "netcoreapp2.1": {
-            "projectReferences": {
-              "Y:\\CarStore\\VehiclesUtils\\VehiclesUtils.csproj": {
-                "projectPath": "Y:\\CarStore\\VehiclesUtils\\VehiclesUtils.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -88,17 +84,6 @@
           "warn": true,
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
-      }
-    },
-    "Y:\\CarStore\\VehiclesUtils\\VehiclesUtils.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "Y:\\CarStore\\VehiclesUtils\\VehiclesUtils.csproj",
-        "projectName": "VehiclesUtils",
-        "projectPath": "Y:\\CarStore\\VehiclesUtils\\VehiclesUtils.csproj"
-      },
-      "frameworks": {
-        "net472": {}
       }
     }
   }

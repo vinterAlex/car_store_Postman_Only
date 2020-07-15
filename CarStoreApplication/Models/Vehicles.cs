@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace VehicleUtils
 {
-    [Table("Vehicles")]
-    public class VehicleForDb
+    
+    public class Vehicles
     {
 
         [Key]
@@ -18,9 +19,12 @@ namespace VehicleUtils
         public int EngineDescriptionID { get; set; }
         public int MakeID { get; set; }
         public int ModelID { get; set; }
-        public int ConstructionYearID { get; set; }
+        public string ConstructionYear { get; set; }
         public DateTime ModifyDate { get; set; }
-        public string VehiclePrice { get; set; }
+        public int VehiclePrice { get; set; }
+
 
     }
+
+
 }

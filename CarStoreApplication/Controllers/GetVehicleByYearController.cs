@@ -14,6 +14,11 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/vehicle/[controller]")]
     public class GetVehicleByYearController : ControllerBase
     {
+        /// <summary>
+        /// http://localhost:51680/api/shop/vehicle/getvehiclebyyear?constyear=2020
+        /// </summary>
+        /// <param name="constYear"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetByYear(int constYear)
         {

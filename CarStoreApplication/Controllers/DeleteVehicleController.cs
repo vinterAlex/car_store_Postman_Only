@@ -14,6 +14,11 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/vehicle/[controller]")]
     public class DeleteVehicleController : ControllerBase
     {
+        /// <summary>
+        /// http://localhost:51680/api/shop/vehicle/deletevehicle?vehicleID=673
+        /// </summary>
+        /// <param name="vehicleID"></param>
+        /// <returns></returns>
         [HttpDelete]
         public IActionResult DeleteVehicle(int vehicleID)
         {

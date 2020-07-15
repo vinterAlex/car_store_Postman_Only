@@ -14,6 +14,10 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/[controller]")]
     public class MakeController : ControllerBase
     {
+        /// <summary>
+        /// http://localhost:51680/api/shop/make/
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetVehicleMake()
         {
@@ -65,6 +69,9 @@ namespace CarStoreApplication.Controllers
         /// <summary>
         /// To get the vehicle by the MakeID
         /// </summary>
+        /// 
+        /// http://localhost:51680/api/shop/make/4
+        /// 
         /// <param name="makeID"></param>
         /// <returns></returns>
         [HttpGet("{makeID}")]

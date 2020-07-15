@@ -1,4 +1,4 @@
-﻿using VehicleUtils;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace CarStoreApplication.Controllers
 
         /// <summary>
         /// Get the list of all vehicles
+        /// http://localhost:51680/api/shop/vehicle/
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -83,6 +84,9 @@ namespace CarStoreApplication.Controllers
         /// <summary>
         /// Find vehicles based on the ID
         /// </summary>
+        /// 
+        /// http://localhost:51680/api/shop/vehicle/674
+        /// 
         /// <param name="vehicleIDParam"></param>
         /// <returns></returns>
         // in API too look after the vehicle ID with detailed informations

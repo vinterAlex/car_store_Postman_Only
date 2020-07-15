@@ -14,7 +14,11 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/vehicle/[controller]")]
     public class GetVehicleByMakeController : ControllerBase
     {
-
+        /// <summary>
+        /// http://localhost:51680/api/shop/vehicle/getvehiclebymake?vehiclemake=Audi
+        /// </summary>
+        /// <param name="vehicleMake"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetByMake(string vehicleMake)
         {
