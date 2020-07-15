@@ -9,7 +9,6 @@ using System.Net;
 using System.Threading.Tasks;
 
 
-
 namespace CarStoreApplication.Controllers
 {
     [ApiController]
@@ -47,12 +46,12 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<Vehicles> carsList = new List<Vehicles>();
+                    List<Vehicle> carsList = new List<Vehicle>();
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        Vehicles car = new Vehicles();
+                        Vehicle car = new Vehicle();
 
                         //convert for all INT/Date's etc...
                         car.VehicleID = Convert.ToInt32(row["VehicleID"]);
