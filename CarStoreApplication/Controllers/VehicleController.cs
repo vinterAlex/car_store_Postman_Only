@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
+using Models;
 
 namespace CarStoreApplication.Controllers
 {
@@ -96,7 +96,7 @@ namespace CarStoreApplication.Controllers
             try
             {
 
-                SqlConnection conn = new SqlConnection(Utils.connectionString);
+                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
@@ -134,13 +134,13 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<VehiclesDetailed> carsList = new List<VehiclesDetailed>();
+                    List<VehicleDetailed> carsList = new List<VehicleDetailed>();
 
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        VehiclesDetailed cars = new VehiclesDetailed();
+                        VehicleDetailed cars = new VehicleDetailed();
 
                         cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
                         cars.DriveType = Convert.ToString(row["DriveType"]);

@@ -1,4 +1,4 @@
-﻿using VehicleUtils;
+﻿using Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -63,13 +63,13 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    List<VehiclesDetailed> carsList = new List<VehiclesDetailed>();
+                    List<VehicleDetailed> carsList = new List<VehicleDetailed>();
 
 
 
                     foreach (DataRow row in dt.Rows)
                     {
-                        VehiclesDetailed cars = new VehiclesDetailed();
+                        VehicleDetailed cars = new VehicleDetailed();
 
                         cars.VehicleID = Convert.ToInt32(row["VehicleID"]);
                         cars.DriveType = Convert.ToString(row["DriveType"]);

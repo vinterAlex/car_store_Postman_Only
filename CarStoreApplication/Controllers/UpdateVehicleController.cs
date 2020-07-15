@@ -1,4 +1,4 @@
-﻿using VehicleUtils;
+﻿using Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace CarStoreApplication.Controllers
         /// <param name="updateVehicleItem"></param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult UpdateVehicle(int vehicleID,[FromBody]VehicleForCreation updateVehicleItem)
+        public IActionResult UpdateVehicle(int vehicleID,[FromBody]CreateVehicle updateVehicleItem)
         {
             try
             {
@@ -62,9 +62,7 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    VehicleForCreation add_vehicle = new VehicleForCreation();
-
-
+                    //need to show what ID was updated or created based on rowindex, i think...
 
                     return Ok("Vehicle ["+vehicleID+"] Updated successfully!");
 

@@ -1,4 +1,4 @@
-﻿using VehicleUtils;
+﻿using Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace CarStoreApplication.Controllers
                 {
                     dt.Load(dr);
 
-                    VehicleForCreation add_vehicle = new VehicleForCreation();
+                    
 
                     return Ok("Vehicle ["+vehicleID.ToString() +"] Deleted successfully!");
 

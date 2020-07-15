@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
-using VehicleUtils;
+using Models;
 
 namespace CarStoreApplication.Controllers
 {
@@ -28,7 +28,7 @@ namespace CarStoreApplication.Controllers
 
 
         [HttpPost]
-        public IActionResult AddVehicle([FromBody] VehicleForCreation vItem)
+        public IActionResult AddVehicle([FromBody] CreateVehicle vItem)
         {
             try
             {
