@@ -116,37 +116,42 @@ namespace CarStoreApplication.Methods
 
         public string AddNewMake(Make makeItem)
         {
-
+            var newID = 0;
             SqlCommand cmd = new SqlCommand();
             SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
             SqlTransaction transaction = null;
 
+            
+
             try
             {
+                
+
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
 
                 cmd.Connection = conn; //to open the connection
-                //cmd = new SqlCommand("insert into MakeType(Name,CreateDate) " +
-                //                   "VALUES(@Name, GETUTCDATE())",conn,transaction);
 
-                //cmd = new SqlCommand("IF NOT EXISTS (SELECT Name FROM MakeType "+
-                //                                    "WHERE Name = @Name) " +
-                //                        "BEGIN " +
-                //                        "  INSERT INTO MakeType(Name, CreateDate) " +
-                //                        "  VALUES(@Name, GETUTCDATE()) " +
-                //                        "END",conn,transaction);
                 cmd = new SqlCommand("INSERT INTO MakeType(Name,CreateDate) " +
-                    "SELECT @Name,GETUTCDATE()" +
-                    "  WHERE NOT EXISTS (SELECT Name from MakeType where Name = @Name)", conn, transaction);
+                    "SELECT @Name,GETUTCDATE() " +
+                    "WHERE NOT EXISTS (SELECT Name from MakeType where Name = @Name); " +
+                    "Select top 1 MakeTypeID from MakeType Order by MakeTypeID desc ", conn,transaction);
+
 
 
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@Name", makeItem.Name); 
-                
+                cmd.Parameters.AddWithValue("@Name", makeItem.Name);
 
+
+
+
+                
                 SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    newID = reader.GetInt32(0);
+                }
                 reader.Close();
 
                 transaction.Commit();
@@ -159,7 +164,7 @@ namespace CarStoreApplication.Methods
                 }
                 else
                 {
-                    return "Make Item added successfully. Rows affected: " + rowsAffected;
+                    return "Item with MakeID:["+newID+"] added successfully. Rows affected: " + rowsAffected;
                 }
 
                 
@@ -168,7 +173,7 @@ namespace CarStoreApplication.Methods
             catch (SqlException SqlEx)
             {
                 transaction.Rollback();
-                return "Make Item cannot be added. Already exists in DB with the same NAME. Message: "+SqlEx.Message;
+                return "Sql Exception ->  Message: "+SqlEx.Message;
 
             }
         }
@@ -233,7 +238,7 @@ namespace CarStoreApplication.Methods
 
             SqlCommand cmd = new SqlCommand();
             SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-            SqlTransaction transaction = null; ;
+            SqlTransaction transaction = null; 
 
             try
             {

@@ -303,19 +303,26 @@ namespace CarStoreApplication.Methods
 
         public string AddNewVehicle(CreateVehicle vItem)
         {
-            
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
+            SqlTransaction transaction = null;
+            var newVehicleID = 0;
+
             try
             {
 
-                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-                SqlCommand cmd = new SqlCommand();
 
+                conn.Open();
+                transaction = conn.BeginTransaction();
 
 
                 cmd.Connection = conn; //to open the connection
-                //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
-                cmd.CommandText = "INSERT INTO Vehicles (DriveTypeID,EngineDescriptionID,MakeID,ModelID,ConstructionYearID,ModifyDate,VehiclePrice)" +
-                    "Values(@DriveTypeID,@EngineDescription,@MakeID,@ModelID,@ConstructionYearID,@ModifyDate,@VehiclePrice)";
+
+
+                cmd = new SqlCommand("INSERT INTO Vehicles (DriveTypeID,EngineDescriptionID,MakeID,ModelID,ConstructionYearID,ModifyDate,VehiclePrice)" +
+                    "Values(@DriveTypeID,@EngineDescription,@MakeID,@ModelID,@ConstructionYearID,@ModifyDate,@VehiclePrice)" +
+                    "SELECT TOP 1 VehicleID FROM Vehicles ORDER BY VehicleID DESC", conn, transaction);
+                cmd.CommandType = CommandType.Text;
 
 
                 cmd.Parameters.AddWithValue("@DriveTypeID", SqlDbType.Int).Value = vItem.DriveTypeID;
@@ -328,19 +335,32 @@ namespace CarStoreApplication.Methods
 
 
 
-                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    newVehicleID = reader.GetInt32(0);
+                }
+                reader.Close();
+                transaction.Commit();
+                var rowsAffected = reader.RecordsAffected.ToString();
 
-                DataTable dt = new DataTable();
+                if (reader.RecordsAffected == 0)
+                {
 
-                cmd.ExecuteReader();
+                    return "Vehicle Item already exists in DB. Rows affected: " + rowsAffected;
+                }
+                else
+                {
+                    return "Item with VehicleID:[" + newVehicleID+ "] added successfully. Rows affected: " + rowsAffected;
+                }
 
-                return "Vehicle Added from 'VehicleMethod class'";
+                
 
             }
             catch (SqlException sqlEx)
             {
-                Exception newEx = new Exception("Something failed", sqlEx);
-                throw newEx;
+            transaction.Rollback();
+            return "Sql Exception ->  Message: " + sqlEx.Message;
             }
         }
 
@@ -352,7 +372,7 @@ namespace CarStoreApplication.Methods
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.Connection = conn;
-                //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
+                
                 cmd.CommandText = " update Vehicles " +
                                   " set DriveTypeID = @DriveTypeID,EngineDescriptionID = @EngineDescription,MakeID = @MakeID,ModelID = @ModelID,ConstructionYearID = @ConstructionYearID , " +
                                   " ModifyDate = GETUTCDATE(),VehiclePrice = @VehiclePrice " +
@@ -392,36 +412,49 @@ namespace CarStoreApplication.Methods
 
         public string DeleteVehicle(int vehicleID)
         {
+
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
+            SqlTransaction transaction = null;
+
             try
             {
-                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.Connection = conn;
-
-                cmd.CommandText = " delete from Vehicles " +
-                                  " where VehicleID = @vehicleID";
-
-                cmd.Parameters.AddWithValue("@vehicleID", vehicleID); // vehicleID for URI
 
                 conn.Open();
 
-                DataTable dt = new DataTable();
+                transaction = conn.BeginTransaction();
 
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                cmd.Connection = conn;
+
+                cmd = new SqlCommand( "IF EXISTS (SELECT VehicleID from Vehicles where VehicleID = @vehicleID)" +
+                                    " delete from Vehicles " +
+                                    " where VehicleID = @vehicleID",conn,transaction);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@vehicleID", vehicleID); // vehicleID for URI
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                reader.Close();
+
+                transaction.Commit();
+
+                var rowsAffected = reader.RecordsAffected.ToString();
+
+                if (reader.RecordsAffected == 0 || reader.RecordsAffected == -1)
                 {
-                    dt.Load(dr);
 
-
-
-                    return "Vehicle [" + vehicleID.ToString() + "] Deleted successfully! from Method class";
-
+                    return "Vehicle Item with ID: " + vehicleID + " does not exist in DB.";
+                }
+                else
+                {
+                    return "Vehicle Item with ID:" + vehicleID+ " deleted from DB. Rows Affected: " + rowsAffected;
                 }
             }
             catch (SqlException sqlEx)
             {
-                Exception newEx = new Exception("Something failed", sqlEx);
-                throw newEx;
+                transaction.Rollback();
+                return "For VehicleID: [" + vehicleID.ToString() + "]" + sqlEx.Message;
             }
         }
 
