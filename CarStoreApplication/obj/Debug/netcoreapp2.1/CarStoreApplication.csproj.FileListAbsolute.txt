@@ -12,6 +12,7 @@ Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.runt
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.dll
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.pdb
 Y:\CarStore\CarStoreApplication\bin\Debug\netcoreapp2.1\CarStoreApplication.Views.dll
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csprojAssemblyReference.cache
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cache
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.RazorAssemblyInfo.cs
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.AssemblyInfoInputs.cache

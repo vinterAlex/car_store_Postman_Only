@@ -154,6 +154,7 @@ namespace CarStoreApplication.Methods
 
                 if(reader.RecordsAffected == 0)
                 {
+                    
                     return "Make Item already exists in DB. Rows affected: " + rowsAffected;
                 }
                 else
@@ -167,7 +168,7 @@ namespace CarStoreApplication.Methods
             catch (SqlException SqlEx)
             {
                 transaction.Rollback();
-                return "Make Item cannot be added. Already exists in DB with the same NAME";
+                return "Make Item cannot be added. Already exists in DB with the same NAME. Message: "+SqlEx.Message;
 
             }
         }
@@ -185,11 +186,16 @@ namespace CarStoreApplication.Methods
                 transaction = conn.BeginTransaction();
 
                 cmd.Connection = conn;
-                //cmd.CommandText = "select * from Vehicles where VehicleID = " + vehicleIDParam;
-                cmd = new SqlCommand("update MakeType " +
-                                    "set Name = @Name, CreateDate = GETUTCDATE() " +
-                                    "where MakeTypeID = @MakeID",conn,transaction);
-                
+
+
+                cmd = new SqlCommand("IF ( NOT EXISTS (SELECT Name from MakeType where MakeTypeID = @MakeID and Name = @Name)) "+
+                                      "BEGIN " +
+                                      "Update MakeType " +
+                                      "Set Name = @Name " +
+                                      "where MakeTypeID = @MakeID " +
+                                      "END",conn,transaction);
+
+
                 cmd.CommandType = CommandType.Text;
 
                 cmd.Parameters.AddWithValue("@MakeID", makeID); // vehicleID for URI
@@ -201,17 +207,23 @@ namespace CarStoreApplication.Methods
 
                 transaction.Commit();
 
-                return ("Make with ID: [" + makeID + "] Updated successfully! from Method class with transaction!!!!");
+                var rowsAffected = reader.RecordsAffected.ToString();
 
+                if (reader.RecordsAffected == 0 || reader.RecordsAffected == -1)
+                {
 
-
-
+                    return "Make Item with ID: " + makeID + " already has this Name.";
+                }
+                else
+                {
+                    return "Make Item with ID:" + makeID + " updated succesfully! Rows Affected: " + rowsAffected;
+                }
 
             }
             catch (SqlException sqlEx)
             {
                 transaction.Rollback();
-                return ("Make with ID: [" + makeID + "] cannot be updated. Transaction ROLLBACK");
+                return ("Make with ID: [" + makeID + "] cannot be updated. Transaction ROLLBACK. Message:"+sqlEx.Message);
             }
         }
 
@@ -230,7 +242,17 @@ namespace CarStoreApplication.Methods
 
                 transaction = conn.BeginTransaction();
 
-                cmd = new SqlCommand("delete from MakeType where MakeTypeID = @makeID", conn, transaction);
+                //cmd = new SqlCommand("delete from MakeType where MakeTypeID = @makeID", conn, transaction);
+
+                cmd = new SqlCommand("IF EXISTS( "+
+                                           "SELECT MakeTypeID "+
+                                           "from MakeType "+
+                                           "where MakeTypeID = @makeID) "+
+                                       "delete MakeType "+
+                                       "where MakeTypeID = @makeID",conn,transaction);
+
+
+
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@makeID", makeID);
 
@@ -239,12 +261,24 @@ namespace CarStoreApplication.Methods
 
                 transaction.Commit();
 
-                return "Make [" + makeID.ToString() + "] Deleted successfully! from Method class";
+                var rowsAffected = reader.RecordsAffected.ToString();
+
+                if (reader.RecordsAffected == 0 || reader.RecordsAffected == -1)
+                {
+
+                    return "Make Item with ID: " + makeID + " does not exist in DB.";
+                }
+                else
+                {
+                    return "Make Item with ID:" + makeID + " deleted from DB. Rows Affected: " + rowsAffected;
+                }
+
+                
             }
             catch (SqlException sqlEx)
             {
                 transaction.Rollback();
-                return "Make with ID: [" + makeID.ToString() + "] cannot be DELETED! Transaction ROLLBACK!";
+                return "For MakeID: [" + makeID.ToString()+"]" + sqlEx.Message;
             }
 
         }
