@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using CarStoreApplication.Methods;
 
 namespace CarStoreApplication.Controllers
 {
@@ -15,54 +16,17 @@ namespace CarStoreApplication.Controllers
     [Route("api/shop/[controller]")]
     public class MakeController : ControllerBase
     {
+        MakeMethods make = new MakeMethods();
         /// <summary>
         /// http://localhost:51680/api/shop/make/
+        /// /// http://localhost:51680/api/shop/make/makeid
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public IActionResult GetVehicleMake()
         {
-            try
-            {
-
-                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.Connection = conn;
-                cmd.CommandText = "select MakeTypeID, Name[Description] from MakeType;";
-                conn.Open();
-
-                DataTable dt = new DataTable();
-
-
-
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    dt.Load(dr);
-
-                    List<Make> makeList = new List<Make>();
-
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        Make makeType = new Make();
-
-                        //convert for all INT/Date's etc...
-                        makeType.MakeID= Convert.ToInt32(row["MakeTypeID"]);
-                        makeType.Description= Convert.ToString(row["Description"]);
-
-
-                        makeList.Add(makeType);
-                    }
-
-                    return Ok(makeList);
-
-                }
-            }
-            catch (SqlException sqlEx)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
-            }
+            var makeResult = make.GetMakeType();
+            return Ok(makeResult);
         }
 
 
@@ -70,56 +34,34 @@ namespace CarStoreApplication.Controllers
         [HttpGet("{makeID}")]
         public IActionResult GetVehicleByMakeID(int makeID)
         {
-            try
-            {
-
-                SqlConnection conn = new SqlConnection(SqlConnectionPath.connectionString);
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.Connection = conn;
-                cmd.CommandText = "select MakeTypeID, Name[Description] from MakeType where MakeTypeID = @makeID;";
-
-                SqlParameter param = new SqlParameter();
-
-                param.ParameterName = "@makeID";
-                param.Value = makeID;
-
-                cmd.Parameters.Add(param);
-
-                    
-
-                conn.Open();
-
-                DataTable dt = new DataTable();
-
-
-
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    dt.Load(dr);
-
-                    List<Make> carsList = new List<Make>();
-
-
-
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        Make cars = new Make();
-
-                        cars.MakeID = Convert.ToInt32(row["MakeTypeID"]);
-                        cars.Description = Convert.ToString(row["Description"]);
-
-                        carsList.Add(cars);
-                    }
-
-                    return Ok(carsList);
-
-                }
-            }
-            catch (SqlException sqlEx)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, sqlEx);
-            }
+            var makeResult = make.GetMakeById(makeID);
+            return Ok(makeResult);
         }
+
+        [HttpPost("addnewmake")]
+        public IActionResult AddNewMake([FromBody] Make makeItem)
+        {
+            var CreateResult = make.AddNewMake(makeItem);
+            return Ok(CreateResult);
+        }
+
+        // https://localhost:44310/api/shop/make/updatemake?makeID=53
+        [HttpPut("updatemake")]
+        public IActionResult UpdateMake(int makeID,[FromBody]Make makeItem)
+        {
+            var makeUpdate = make.UpdateMake(makeID,makeItem);
+            return Ok(makeUpdate);
+        }
+
+        //https://localhost:44310/api/shop/make/deletemake?makeID=55
+        [HttpDelete("deletemake")]
+        public IActionResult DeleteMake(int makeID)
+        {
+            var deleteResult = make.DeleteMake(makeID);
+            return Ok(deleteResult);
+        }
+
+
+
     }
 }

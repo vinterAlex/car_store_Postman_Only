@@ -295,6 +295,11 @@ namespace CarStoreApplication.Methods
             }
         }
 
+        /// <summary>
+        /// ADD / UPDATE / DELETE against the DB
+        /// </summary>
+        /// <param name="vItem"></param>
+        /// <returns></returns>
 
         public string AddNewVehicle(CreateVehicle vItem)
         {
