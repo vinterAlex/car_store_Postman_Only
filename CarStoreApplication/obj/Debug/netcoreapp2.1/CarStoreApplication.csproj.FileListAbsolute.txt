@@ -20,3 +20,4 @@ Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.Razo
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.dll
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.pdb
 Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csproj.CopyComplete
+Y:\CarStore\CarStoreApplication\obj\Debug\netcoreapp2.1\CarStoreApplication.csprojAssemblyReference.cache
