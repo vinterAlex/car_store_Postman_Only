@@ -311,7 +311,6 @@ namespace CarStoreApplication.Methods
             try
             {
 
-
                 conn.Open();
                 transaction = conn.BeginTransaction();
 
@@ -332,7 +331,6 @@ namespace CarStoreApplication.Methods
                 cmd.Parameters.AddWithValue("@ConstructionYearID", vItem.ConstructionYearID);
                 cmd.Parameters.AddWithValue("@ModifyDate", vItem.ModifyDate = DateTime.Now);
                 cmd.Parameters.AddWithValue("@VehiclePrice", vItem.VehiclePrice);
-
 
 
                 SqlDataReader reader = cmd.ExecuteReader();
