@@ -32,6 +32,19 @@ namespace CarStoreApplication.Controllers
             var totalIncome = mic.GetTotalIncome();
             return Ok(totalIncome);
         }
+        [HttpGet("totalexpense")]
+        public IActionResult GetTotalExpense()
+        {
+            var totalExpense = mic.GetTotalExpenses();
+            return Ok(totalExpense);
+        }
+
+        [HttpGet("budget")]
+        public IActionResult GetBudget()
+        {
+            var budget = mic.Budget();
+            return Ok(budget);
+        }
 
         [HttpGet("incomes")]
         public IActionResult GetIncomes()

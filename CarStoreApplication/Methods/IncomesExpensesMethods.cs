@@ -9,7 +9,15 @@ namespace CarStoreApplication.Methods
     public class IncomesExpensesMethods
     {
 
-       
+       public int Budget()
+        {
+            var income = GetTotalIncome();
+            var expense = GetTotalExpenses();
+
+            var budgetTotal = income - expense;
+
+            return budgetTotal;
+        }
 
 
         public int GetTotalIncome()
@@ -23,6 +31,20 @@ namespace CarStoreApplication.Methods
             incomes.Add(new Incomes() { id = 3, description = "onCall", value = 500 });
 
             var total = incomes.Sum(item => item.value);
+
+            return total;
+        }
+
+        public int GetTotalExpenses()
+        {
+            var expenses = new List<Expenses>();
+
+            expenses.Add(new Expenses() { id = 1, description = "Fuel", value = 1500 });
+            expenses.Add(new Expenses() { id = 2, description = "Energy", value = 100 });
+            expenses.Add(new Expenses() { id = 3, description = "Patience", value = 500 });
+            expenses.Add(new Expenses() { id = 4, description = "Food", value = 2 });
+
+            var total = expenses.Sum(item => item.value);
 
             return total;
         }
