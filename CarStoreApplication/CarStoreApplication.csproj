@@ -7,10 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Utils\**" />
     <Compile Remove="wwwroot\**" />
+    <Content Remove="Utils\**" />
     <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Utils\**" />
     <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Utils\**" />
     <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\MakeController.cs" />
+    <Compile Remove="Controllers\VehicleController.cs" />
+    <Compile Remove="Methods\MakeMethods.cs" />
+    <Compile Remove="Methods\VehicleMethods.cs" />
+    <Compile Remove="Models\Make.cs" />
+    <Compile Remove="Models\Vehicle.cs" />
   </ItemGroup>
 
   <ItemGroup>
